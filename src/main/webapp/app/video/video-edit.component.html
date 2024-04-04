@@ -1,0 +1,15 @@
+<div class="flex flex-wrap mb-6">
+    <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@video.edit.headline">Edit Video</h1>
+    <div>
+        <a routerLink="/videos" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded px-5 py-2" i18n="@@video.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@video.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="fileName" i18n-label="@@video.fileName.label" label="File Name" />
+    <app-input-row [group]="editForm" field="fileType" i18n-label="@@video.fileType.label" label="File Type" />
+    <app-input-row [group]="editForm" field="fileSize" rowType="number" i18n-label="@@video.fileSize.label" label="File Size" />
+    <app-input-row [group]="editForm" field="filePath" i18n-label="@@video.filePath.label" label="File Path" />
+    <app-input-row [group]="editForm" field="influence" rowType="select" [options]="influenceValues" i18n-label="@@video.influence.label" label="Influence" />
+    <input type="submit" i18n-value="@@video.edit.headline" value="Edit Video" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+</form>

@@ -1,0 +1,14 @@
+<div class="flex flex-wrap mb-6">
+    <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@admin.edit.headline">Edit Admin</h1>
+    <div>
+        <a routerLink="/admins" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded px-5 py-2" i18n="@@admin.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@admin.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="name" i18n-label="@@admin.name.label" label="Name" />
+    <app-input-row [group]="editForm" field="email" i18n-label="@@admin.email.label" label="Email" />
+    <app-input-row [group]="editForm" field="password" i18n-label="@@admin.password.label" label="Password" />
+    <app-input-row [group]="editForm" field="status" rowType="radio" [options]="{'ACTIVE': 'ACTIVE', 'LOCKED': 'LOCKED'}" i18n-label="@@admin.status.label" label="Status" />
+    <input type="submit" i18n-value="@@admin.edit.headline" value="Edit Admin" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+</form>

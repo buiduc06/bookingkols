@@ -1,0 +1,43 @@
+<div class="flex flex-wrap mb-6">
+    <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@video.list.headline">Videos</h1>
+    <div>
+        <a routerLink="/videos/add" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2" i18n="@@video.list.createNew">Create new Video</a>
+    </div>
+</div>
+@if (!videos || videos.length === 0) {
+<div i18n="@@video.list.empty">No Videos could be found.</div>
+} @else {
+<div class="overflow-x-auto">
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th scope="col" class="text-left p-2" i18n="@@video.id.label">Id</th>
+                <th scope="col" class="text-left p-2" i18n="@@video.fileName.label">File Name</th>
+                <th scope="col" class="text-left p-2" i18n="@@video.fileType.label">File Type</th>
+                <th scope="col" class="text-left p-2" i18n="@@video.fileSize.label">File Size</th>
+                <th scope="col" class="text-left p-2" i18n="@@video.filePath.label">File Path</th>
+                <th scope="col" class="text-left p-2" i18n="@@video.influence.label">Influence</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody class="border-t-2 border-black">
+            @for (video of videos; track video.id) {
+            <tr class="odd:bg-gray-100">
+                <td class="p-2">{{ video.id }}</td>
+                <td class="p-2">{{ video.fileName }}</td>
+                <td class="p-2">{{ video.fileType }}</td>
+                <td class="p-2">{{ video.fileSize }}</td>
+                <td class="p-2">{{ video.filePath }}</td>
+                <td class="p-2">{{ video.influence }}</td>
+                <td class="p-2">
+                    <div class="float-right whitespace-nowrap">
+                        <a [routerLink]="['/videos/edit', video.id]" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm" i18n="@@video.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(video.id!)" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm" i18n="@@video.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

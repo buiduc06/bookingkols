@@ -1,0 +1,21 @@
+<div class="flex flex-wrap mb-6">
+    <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@influence.add.headline">Add Influence</h1>
+    <div>
+        <a routerLink="/influences" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded px-5 py-2" i18n="@@influence.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="name" i18n-label="@@influence.name.label" label="Name" />
+    <app-input-row [group]="addForm" field="gender" rowType="radio" [options]="{'MALE': 'MALE', 'FEMALE': 'FEMALE'}" i18n-label="@@influence.gender.label" label="Gender" />
+    <app-input-row [group]="addForm" field="height" i18n-label="@@influence.height.label" label="Height" />
+    <app-input-row [group]="addForm" field="weight" i18n-label="@@influence.weight.label" label="Weight" />
+    <app-input-row [group]="addForm" field="costMin" i18n-label="@@influence.costMin.label" label="Cost Min" />
+    <app-input-row [group]="addForm" field="costMax" i18n-label="@@influence.costMax.label" label="Cost Max" />
+    <app-input-row [group]="addForm" field="profilePicture" i18n-label="@@influence.profilePicture.label" label="Profile Picture" />
+    <app-input-row [group]="addForm" field="introduce" rowType="textarea" i18n-label="@@influence.introduce.label" label="Introduce" />
+    <app-input-row [group]="addForm" field="status" rowType="radio" [options]="{'ACTIVE': 'ACTIVE', 'LOCKED': 'LOCKED'}" i18n-label="@@influence.status.label" label="Status" />
+    <app-input-row [group]="addForm" field="platforms" rowType="multiselect" [options]="platformsValues" i18n-label="@@influence.platforms.label" label="Platforms" />
+    <app-input-row [group]="addForm" field="categories" rowType="multiselect" [options]="categoriesValues" i18n-label="@@influence.categories.label" label="Categories" />
+    <app-input-row [group]="addForm" field="industries" rowType="multiselect" [options]="industriesValues" i18n-label="@@influence.industries.label" label="Industries" />
+    <input type="submit" i18n-value="@@influence.add.headline" value="Add Influence" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+</form>

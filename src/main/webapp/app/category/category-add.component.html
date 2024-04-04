@@ -1,0 +1,11 @@
+<div class="flex flex-wrap mb-6">
+    <h1 class="grow text-3xl md:text-4xl font-medium mb-2" i18n="@@category.add.headline">Add Category</h1>
+    <div>
+        <a routerLink="/categories" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded px-5 py-2" i18n="@@category.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="name" i18n-label="@@category.name.label" label="Name" />
+    <app-input-row [group]="addForm" field="icon" i18n-label="@@category.icon.label" label="Icon" />
+    <input type="submit" i18n-value="@@category.add.headline" value="Add Category" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+</form>
