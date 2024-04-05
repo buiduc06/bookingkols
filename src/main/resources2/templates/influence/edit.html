@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{influence.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="flex flex-wrap mb-6">
+                <h1 class="grow text-3xl md:text-4xl font-medium mb-2">[[#{influence.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/influences}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-4 rounded px-5 py-2">[[#{influence.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('influence')}" />
+            <form th:action="${requestUri}" method="post">
+                <input type="submit" th:value="#{influence.edit.headline}" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6 mb-5" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='id', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='name', required=true)}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='gender', type='radio')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='height')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='weight')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='costMin')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='costMax')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='profilePicture')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='introduce', type='textarea')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='status', type='radio')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='platforms', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='categories', type='multiselect')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='influence', field='industries', type='multiselect')}" />
+                <input type="submit" th:value="#{influence.edit.headline}" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2 mt-6" />
+            </form>
+        </div>
+    </body>
+</html>

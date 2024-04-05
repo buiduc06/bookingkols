@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{industry.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div>
+                <!-- Table Section -->
+                <div class="max-w-[100rem] mx-auto">
+                    <!-- Card -->
+                    <div class="flex flex-col">
+                        <div class="-m-1.5">
+                            <div class="p-1.5 min-w-full inline-block align-middle">
+                                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-slate-900 dark:border-gray-700">
+                                    <!-- Header -->
+                                    <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
+                                        <div>
+                                            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                                                [[#{industry.list.headline}]]
+                                            </h2>
+                                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                                Create [[#{industry.list.headline}]], edit, download and more.
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <div class="inline-flex gap-x-2">
+                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800" href="#">
+                                                    View all
+                                                </a>
+
+                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" th:href="@{/industries/add}">
+                                                    <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                                                    [[#{industry.list.createNew}]]
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Header -->
+
+                                    <!-- Table -->
+                                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                        <thead class="bg-gray-50 dark:bg-slate-900">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">[[#{industry.id.label}]]</span>
+                                                </div>
+                                            </th>
+
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                      [[#{industry.name.label}]]
+                    </span>
+                                                </div>
+                                            </th>
+
+                                            <th scope="col" class="px-6 py-3 text-start">
+                                                <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                      [[#{industry.icon.label}]]
+                    </span>
+                                                </div>
+                                            </th>
+
+                                            <th scope="col" class="px-6 py-3 text-end"></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                        <tr th:each="industry : ${industries}" class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
+                                            <td class="size-px whitespace-nowrap">
+                                                <a th:href="@{/industries/edit/{id}(id=${industry.id})}" class="block px-6 py-2">
+                                                    <span class="font-mono text-sm text-blue-600 dark:text-blue-500">#[[${industry.id}]]</span>
+                                                </a>
+                                            </td>
+                                            <td class="size-px whitespace-nowrap">
+                                                <button type="button" class="block" data-hs-overlay="#hs-ai-invoice-modal">
+                    <span class="block px-6 py-2">
+                      <span class="text-sm text-gray-600 dark:text-gray-400">[[${industry.name}]]</span>
+                    </span>
+                                                </button>
+                                            </td>
+                                            <td class="size-px whitespace-nowrap">
+                                                <button type="button" class="block" data-hs-overlay="#hs-ai-invoice-modal">
+                    <span class="block px-6 py-2">
+                      <span class="text-sm text-gray-600 dark:text-gray-400">
+                        [[${industry.icon}]]
+                      </span>
+                    </span>
+                                                </button>
+                                            </td>
+
+                                            <td class="size-px whitespace-nowrap">
+                                                <div class="px-6 py-1.5">
+                                                    <a th:href="@{/industries/edit/{id}(id=${industry.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{industry.list.edit}]]</a>
+                                                    <form th:action="@{/industries/delete/{id}(id=${industry.id})}"
+                                                          th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm inline">
+                                                        <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{industry.list.delete}]]</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- End Table -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+                </div>
+                <!-- End Table Section -->
+            </div>
+        </div>
+    </body>
+</html>
