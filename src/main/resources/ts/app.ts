@@ -39,3 +39,20 @@ handleEvent('click', 'body', function(event: Event) {
     event.preventDefault();
   }
 });
+
+/**
+ * active menu item on page load based on current URL
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  // get first part of URL, e.g. /admin/... -> /admin
+  const currentUrl = window.location.pathname.split('/').slice(0, 2).join('/');
+  const $navLinks = document.querySelectorAll('.js-nav-link');
+  $navLinks.forEach(($navLink) => {
+    console.log($navLink.getAttribute('href'));
+    if ($navLink.getAttribute('href') === currentUrl) {
+      $navLink.classList.add('bg-gray-700');
+      $navLink.classList.add('text-white');
+      $navLink.classList.remove('text-gray-400');
+    }
+  });
+});
