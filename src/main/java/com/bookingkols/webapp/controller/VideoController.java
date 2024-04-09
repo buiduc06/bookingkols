@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/videos")
+@RequestMapping("/cms/videos")
 public class VideoController {
 
     private final VideoService videoService;
@@ -42,29 +42,29 @@ public class VideoController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("videos", videoService.findAll());
-        return "video/list";
+        return "cms/video/list";
     }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("video") final VideoDTO videoDTO) {
-        return "video/add";
+        return "cms/video/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("video") @Valid final VideoDTO videoDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "video/add";
+            return "cms/video/add";
         }
         videoService.create(videoDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("video.create.success"));
-        return "redirect:/videos";
+        return "redirect:/cms/videos";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") final Long id, final Model model) {
         model.addAttribute("video", videoService.get(id));
-        return "video/edit";
+        return "cms/video/edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -72,11 +72,11 @@ public class VideoController {
             @ModelAttribute("video") @Valid final VideoDTO videoDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "video/edit";
+            return "cms/video/edit";
         }
         videoService.update(id, videoDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("video.update.success"));
-        return "redirect:/videos";
+        return "redirect:/cms/videos";
     }
 
     @PostMapping("/delete/{id}")
@@ -84,7 +84,7 @@ public class VideoController {
             final RedirectAttributes redirectAttributes) {
         videoService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("video.delete.success"));
-        return "redirect:/videos";
+        return "redirect:/cms/videos";
     }
 
 }

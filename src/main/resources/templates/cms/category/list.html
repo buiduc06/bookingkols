@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+        layout:decorate="~{cms-layout}">
     <head>
-        <title>[[#{video.list.headline}]]</title>
+        <title>[[#{category.list.headline}]]</title>
     </head>
     <body>
         <div layout:fragment="content">
@@ -18,10 +18,10 @@
                                     <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">
                                         <div>
                                             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                                [[#{video.list.headline}]]
+                                                [[#{category.list.headline}]]
                                             </h2>
                                             <p class="text-sm text-gray-600 dark:text-gray-400">
-                                                Create [[#{video.list.headline}]], edit, download and more.
+                                                Create [[#{category.list.headline}]], edit, download and more.
                                             </p>
                                         </div>
 
@@ -31,9 +31,9 @@
                                                     View all
                                                 </a>
 
-                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" th:href="@{/videos/add}">
+                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" th:href="@{/cms/categories/add}">
                                                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                                                    [[#{video.list.createNew}]]
+                                                    [[#{category.list.createNew}]]
                                                 </a>
                                             </div>
                                         </div>
@@ -46,14 +46,14 @@
                                         <tr>
                                             <th scope="col" class="px-6 py-3 text-start">
                                                 <div class="flex items-center gap-x-2">
-                                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">[[#{video.id.label}]]</span>
+                                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">[[#{category.id.label}]]</span>
                                                 </div>
                                             </th>
 
                                             <th scope="col" class="px-6 py-3 text-start">
                                                 <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                      [[#{video.fileName.label}]]
+                      [[#{category.name.label}]]
                     </span>
                                                 </div>
                                             </th>
@@ -61,31 +61,7 @@
                                             <th scope="col" class="px-6 py-3 text-start">
                                                 <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                      [[#{video.fileType.label}]]
-                    </span>
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                      [[#{video.fileSize.label}]]
-                    </span>
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                      [[#{video.filePath.label}]]
-                    </span>
-                                                </div>
-                                            </th>
-
-                                            <th scope="col" class="px-6 py-3 text-start">
-                                                <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                      [[#{video.influence.label}]]
+                      [[#{category.icon.label}]]
                     </span>
                                                 </div>
                                             </th>
@@ -95,16 +71,16 @@
                                         </thead>
 
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                        <tr th:each="video : ${videos}" class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
+                                        <tr th:each="category : ${categories}" class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
                                             <td class="size-px whitespace-nowrap">
-                                                <a th:href="@{/videos/edit/{id}(id=${video.id})}" class="block px-6 py-2">
-                                                    <span class="font-mono text-sm text-blue-600 dark:text-blue-500">#[[${video.id}]]</span>
+                                                <a th:href="@{/cms/categories/edit/{id}(id=${category.id})}" class="block px-6 py-2">
+                                                    <span class="font-mono text-sm text-blue-600 dark:text-blue-500">#[[${category.id}]]</span>
                                                 </a>
                                             </td>
                                             <td class="size-px whitespace-nowrap">
                                                 <button type="button" class="block" data-hs-overlay="#hs-ai-invoice-modal">
                     <span class="block px-6 py-2">
-                      <span class="text-sm text-gray-600 dark:text-gray-400">[[${video.fileName}]]</span>
+                      <span class="text-sm text-gray-600 dark:text-gray-400">[[${category.name}]]</span>
                     </span>
                                                 </button>
                                             </td>
@@ -112,46 +88,18 @@
                                                 <button type="button" class="block" data-hs-overlay="#hs-ai-invoice-modal">
                     <span class="block px-6 py-2">
                       <span class="text-sm text-gray-600 dark:text-gray-400">
-                        [[${video.fileType}]]
+                        [[${category.icon}]]
                       </span>
                     </span>
                                                 </button>
                                             </td>
 
-                                            <td class="size-px whitespace-nowrap">
-                                                <button type="button" class="block" data-hs-overlay="#hs-ai-invoice-modal">
-                    <span class="block px-6 py-2">
-                      <span class="text-sm text-gray-600 dark:text-gray-400">
-                        [[${video.fileSize}]]
-                      </span>
-                    </span>
-                                                </button>
-                                            </td>
-
-                                            <td class="size-px whitespace-nowrap">
-                                                <button type="button" class="block" data-hs-overlay="#hs-ai-invoice-modal">
-                    <span class="block px-6 py-2">
-                      <span class="text-sm text-gray-600 dark:text-gray-400">
-                        [[${video.filePath}]]
-                      </span>
-                    </span>
-                                                </button>
-                                            </td>
-                                            <td class="size-px whitespace-nowrap">
-                                                <button type="button" class="block" data-hs-overlay="#hs-ai-invoice-modal">
-                    <span class="block px-6 py-2">
-                      <span class="text-sm text-gray-600 dark:text-gray-400">
-                        [[${video.influence}]]
-                      </span>
-                    </span>
-                                                </button>
-                                            </td>
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-1.5">
-                                                    <a th:href="@{/videos/edit/{id}(id=${video.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{video.list.edit}]]</a>
-                                                    <form th:action="@{/videos/delete/{id}(id=${video.id})}"
+                                                    <a th:href="@{/cms/categories/edit/{id}(id=${category.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{category.list.edit}]]</a>
+                                                    <form th:action="@{/cms/categories/delete/{id}(id=${category.id})}"
                                                           th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm inline">
-                                                        <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{video.list.delete}]]</button>
+                                                        <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{category.list.delete}]]</button>
                                                     </form>
                                                 </div>
                                             </td>

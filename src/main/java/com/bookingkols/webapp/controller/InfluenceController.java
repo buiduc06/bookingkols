@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/influences")
+@RequestMapping("/cms/influences")
 public class InfluenceController {
 
     private final InfluenceService influenceService;
@@ -63,29 +63,29 @@ public class InfluenceController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("influences", influenceService.findAll());
-        return "influence/list";
+        return "cms/influence/list";
     }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("influence") final InfluenceDTO influenceDTO) {
-        return "influence/add";
+        return "cms/influence/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("influence") @Valid final InfluenceDTO influenceDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "influence/add";
+            return "cms/influence/add";
         }
         influenceService.create(influenceDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("influence.create.success"));
-        return "redirect:/influences";
+        return "redirect:/cms/influences";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") final Long id, final Model model) {
         model.addAttribute("influence", influenceService.get(id));
-        return "influence/edit";
+        return "cms/influence/edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -93,11 +93,11 @@ public class InfluenceController {
             @ModelAttribute("influence") @Valid final InfluenceDTO influenceDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "influence/edit";
+            return "cms/influence/edit";
         }
         influenceService.update(id, influenceDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("influence.update.success"));
-        return "redirect:/influences";
+        return "redirect:/cms/influences";
     }
 
     @PostMapping("/delete/{id}")
@@ -111,7 +111,7 @@ public class InfluenceController {
             influenceService.delete(id);
             redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("influence.delete.success"));
         }
-        return "redirect:/influences";
+        return "redirect:/cms/influences";
     }
 
 }

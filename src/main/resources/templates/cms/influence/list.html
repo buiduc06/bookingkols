@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+        layout:decorate="~{cms-layout}">
     <head>
         <title>[[#{influence.list.headline}]]</title>
     </head>
@@ -31,7 +31,7 @@
                                                     View all
                                                 </a>
 
-                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" th:href="@{/influences/add}">
+                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" th:href="@{/cms/influences/add}">
                                                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                                                     [[#{influence.list.createNew}]]
                                                 </a>
@@ -113,7 +113,7 @@
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                         <tr th:each="influence : ${influences}" class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
                                             <td class="size-px whitespace-nowrap">
-                                                <a th:href="@{/influences/edit/{id}(id=${influence.id})}" class="block px-6 py-2">
+                                                <a th:href="@{/cms/influences/edit/{id}(id=${influence.id})}" class="block px-6 py-2">
                                                     <span class="font-mono text-sm text-blue-600 dark:text-blue-500">#[[${influence.id}]]</span>
                                                 </a>
                                             </td>
@@ -185,8 +185,8 @@
                                             </td>
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-1.5">
-                                                    <a th:href="@{/influences/edit/{id}(id=${influence.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{influence.list.edit}]]</a>
-                                                    <form th:action="@{/influences/delete/{id}(id=${influence.id})}"
+                                                    <a th:href="@{/cms/influences/edit/{id}(id=${influence.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{influence.list.edit}]]</a>
+                                                    <form th:action="@{/cms/influences/delete/{id}(id=${influence.id})}"
                                                           th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm inline">
                                                         <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{influence.list.delete}]]</button>
                                                     </form>

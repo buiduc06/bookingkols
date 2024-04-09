@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/admins")
+@RequestMapping("/cms/admins")
 public class AdminController {
 
     private final AdminService adminService;
@@ -34,29 +34,29 @@ public class AdminController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("admins", adminService.findAll());
-        return "admin/list";
+        return "cms/admin/list";
     }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("admin") final AdminDTO adminDTO) {
-        return "admin/add";
+        return "cms/admin/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("admin") @Valid final AdminDTO adminDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "admin/add";
+            return "cms/admin/add";
         }
         adminService.create(adminDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("admin.create.success"));
-        return "redirect:/admins";
+        return "redirect:/cms/admins";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") final Long id, final Model model) {
         model.addAttribute("admin", adminService.get(id));
-        return "admin/edit";
+        return "cms/admin/edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -64,11 +64,11 @@ public class AdminController {
             @ModelAttribute("admin") @Valid final AdminDTO adminDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "admin/edit";
+            return "cms/admin/edit";
         }
         adminService.update(id, adminDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("admin.update.success"));
-        return "redirect:/admins";
+        return "redirect:/cms/admins";
     }
 
     @PostMapping("/delete/{id}")
@@ -76,7 +76,7 @@ public class AdminController {
             final RedirectAttributes redirectAttributes) {
         adminService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("admin.delete.success"));
-        return "redirect:/admins";
+        return "redirect:/cms/admins";
     }
 
 }

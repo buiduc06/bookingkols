@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/platforms")
+@RequestMapping("/cms/platforms")
 public class PlatformController {
 
     private final PlatformService platformService;
@@ -28,29 +28,29 @@ public class PlatformController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("platforms", platformService.findAll());
-        return "platform/list";
+        return "cms/platform/list";
     }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("platform") final PlatformDTO platformDTO) {
-        return "platform/add";
+        return "cms/platform/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("platform") @Valid final PlatformDTO platformDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "platform/add";
+            return "cms/platform/add";
         }
         platformService.create(platformDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("platform.create.success"));
-        return "redirect:/platforms";
+        return "redirect:/cms/platforms";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") final Long id, final Model model) {
         model.addAttribute("platform", platformService.get(id));
-        return "platform/edit";
+        return "cms/platform/edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -58,11 +58,11 @@ public class PlatformController {
             @ModelAttribute("platform") @Valid final PlatformDTO platformDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "platform/edit";
+            return "cms/platform/edit";
         }
         platformService.update(id, platformDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("platform.update.success"));
-        return "redirect:/platforms";
+        return "redirect:/cms/platforms";
     }
 
     @PostMapping("/delete/{id}")
@@ -70,7 +70,7 @@ public class PlatformController {
             final RedirectAttributes redirectAttributes) {
         platformService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("platform.delete.success"));
-        return "redirect:/platforms";
+        return "redirect:/cms/platforms";
     }
 
 }

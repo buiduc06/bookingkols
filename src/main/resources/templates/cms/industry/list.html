@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+        layout:decorate="~{cms-layout}">
     <head>
         <title>[[#{industry.list.headline}]]</title>
     </head>
@@ -31,7 +31,7 @@
                                                     View all
                                                 </a>
 
-                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" th:href="@{/industries/add}">
+                                                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" th:href="@{/cms/industries/add}">
                                                     <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                                                     [[#{industry.list.createNew}]]
                                                 </a>
@@ -73,7 +73,7 @@
                                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                         <tr th:each="industry : ${industries}" class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
                                             <td class="size-px whitespace-nowrap">
-                                                <a th:href="@{/industries/edit/{id}(id=${industry.id})}" class="block px-6 py-2">
+                                                <a th:href="@{/cms/industries/edit/{id}(id=${industry.id})}" class="block px-6 py-2">
                                                     <span class="font-mono text-sm text-blue-600 dark:text-blue-500">#[[${industry.id}]]</span>
                                                 </a>
                                             </td>
@@ -96,8 +96,8 @@
 
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-1.5">
-                                                    <a th:href="@{/industries/edit/{id}(id=${industry.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{industry.list.edit}]]</a>
-                                                    <form th:action="@{/industries/delete/{id}(id=${industry.id})}"
+                                                    <a th:href="@{/cms/industries/edit/{id}(id=${industry.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{industry.list.edit}]]</a>
+                                                    <form th:action="@{/cms/industries/delete/{id}(id=${industry.id})}"
                                                           th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm inline">
                                                         <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">[[#{industry.list.delete}]]</button>
                                                     </form>

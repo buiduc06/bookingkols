@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/industries")
+@RequestMapping("/cms/industries")
 public class IndustryController {
 
     private final IndustryService industryService;
@@ -28,29 +28,29 @@ public class IndustryController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("industries", industryService.findAll());
-        return "industry/list";
+        return "cms/industry/list";
     }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("industry") final IndustryDTO industryDTO) {
-        return "industry/add";
+        return "cms/industry/add";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("industry") @Valid final IndustryDTO industryDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "industry/add";
+            return "cms/industry/add";
         }
         industryService.create(industryDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("industry.create.success"));
-        return "redirect:/industries";
+        return "redirect:/cms/industries";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") final Long id, final Model model) {
         model.addAttribute("industry", industryService.get(id));
-        return "industry/edit";
+        return "cms/industry/edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -58,11 +58,11 @@ public class IndustryController {
             @ModelAttribute("industry") @Valid final IndustryDTO industryDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "industry/edit";
+            return "cms/industry/edit";
         }
         industryService.update(id, industryDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("industry.update.success"));
-        return "redirect:/industries";
+        return "redirect:/cms/industries";
     }
 
     @PostMapping("/delete/{id}")
@@ -70,7 +70,7 @@ public class IndustryController {
             final RedirectAttributes redirectAttributes) {
         industryService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("industry.delete.success"));
-        return "redirect:/industries";
+        return "redirect:/cms/industries";
     }
 
 }
